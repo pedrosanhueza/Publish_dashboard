@@ -1,5 +1,11 @@
 import streamlit as st
 
+st.set_page_config(
+    # page_title='I-Tree',
+    # page_icon=':evergreen_tree:',
+    layout="wide"
+    )
+
 # Define the correct password
 correct_password = "1234"  # Replace "your_password_here" with your actual password
 
