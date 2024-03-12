@@ -1,25 +1,20 @@
 import streamlit as st
 
-st.title("TITLE")
+# Define the correct password
+correct_password = "1234"  # Replace "your_password_here" with your actual password
 
-st.markdown('''
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <style>
-    iframe {
-      width: 100%;
-      height: 100vh; /* You can adjust the height as needed */
-      border: none; /* Remove iframe border */
-    }
-  </style>
-</head>
-            
-<body>
+# Display a text input box for the user to enter the password
+password_input = st.text_input("Enter the password:", type="password")
 
-<iframe src="https://app.powerbi.com/view?r=eyJrIjoiNzI5ZWM3NWEtZTRjZS00ZjU4LTkwNTAtZWFlYzk0M2ZhNTc0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9" title="Embedded Page"></iframe>
+# Check if the entered password matches the correct password
+if password_input == correct_password:
+    st.title("TITLE")
 
-</body>
-</html>
-            ''', unsafe_allow_html=True)
+    # Display the embedded content only if the correct password is entered
+    st.markdown('''
+    <body>
+    <iframe src="https://app.powerbi.com/view?r=eyJrIjoiNzI5ZWM3NWEtZTRjZS00ZjU4LTkwNTAtZWFlYzk0M2ZhNTc0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9" title="Embedded Page" style="width: 100%; height: 100vh; border: none;"></iframe>
+    </body>
+    ''', unsafe_allow_html=True)
+else:
+    st.error("Incorrect password. Please try again.")
