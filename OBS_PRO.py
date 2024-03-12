@@ -14,7 +14,6 @@ password_input = st.text_input("Enter the password:", type="password")
 
 # Check if the entered password matches the correct password
 if password_input == correct_password:
-    st.title("TITLE")
 
     # Display the embedded content only if the correct password is entered
     st.markdown('''
