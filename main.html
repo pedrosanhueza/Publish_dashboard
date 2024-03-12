@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embedded Page</title>
+  <style>
+    /* Optional CSS to style the iframe */
+    iframe {
+      width: 100%;
+      height: 100vh; /* You can adjust the height as needed */
+      border: none; /* Remove iframe border */
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  function checkPassword() {
+    var password = prompt("Please enter the password:");
+    if (password === "1234") {
+      // Password is correct, allow access
+      document.getElementById("embeddedFrame").src = "https://app.powerbi.com/view?r=eyJrIjoiNzI5ZWM3NWEtZTRjZS00ZjU4LTkwNTAtZWFlYzk0M2ZhNTc0IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9";
+    } else {
+      // Password is incorrect, deny access
+      alert("Incorrect password. Access denied.");
+    }
+  }
+</script>
+
+<iframe id="embeddedFrame" title="Embedded Page"></iframe>
+
+<script>
+  // Call the function to check the password when the page loads
+  checkPassword();
+</script>
+
+</body>
+</html>
