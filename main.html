@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Embedded Page</title>
+  <title>OBS vs PRO</title>
   <style>
     /* Optional CSS to style the iframe */
     iframe {
@@ -19,16 +19,14 @@
   function checkPassword() {
     var password = prompt("Please enter the password:");
     if (password === "1234") {
-      // Password is correct, allow access
-      document.getElementById("embeddedFrame").src = "https://app.powerbi.com/view?r=eyJrIjoiYzIwYzkxM2YtMzQ5My00YTM5LWJlMDUtNzg4ZWUzMDZiNTg2IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9";
+      // document.getElementById("embeddedFrame").src = "https://app.powerbi.com/view?r=eyJrIjoiYzIwYzkxM2YtMzQ5My00YTM5LWJlMDUtNzg4ZWUzMDZiNTg2IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9";
     } else {
-      // Password is incorrect, deny access
       alert("Incorrect password. Access denied.");
     }
   }
 </script>
 
-<iframe id="embeddedFrame" title="Embedded Page"></iframe>
+<iframe id="embeddedFrame" title="OBS vs PRO"></iframe>
 
 <script>
   // Call the function to check the password when the page loads
@@ -36,4 +34,8 @@
 </script>
 
 </body>
+
+<p>
+  ff
+</p>
 </html>
