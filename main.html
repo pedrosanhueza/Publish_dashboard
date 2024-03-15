@@ -45,7 +45,7 @@
 </head>
 <body>
 
-<div class="banner">
+<div class="banner" id="banner_id">
   <label for="passwordInput" id="passwordLabel">Ingresar contraseña</label>
   <br><br>
   <input type="password" id="passwordInput" placeholder="Contraseña" onkeydown="checkEnter(event)">
@@ -67,6 +67,8 @@
       document.getElementById("passwordLabel").style.display = "none";
       // Remove the background image
       document.body.style.backgroundImage = "none";
+      // Hide the banner
+      document.getElementById("banner_id").style.display = "none";
     } else {
       alert("Contraseña incorrecta. Acceso denegado.");
     }
