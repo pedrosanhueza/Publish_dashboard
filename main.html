@@ -47,40 +47,60 @@
       color: white;
       font-family: 'Open Sans Condensed', sans-serif; /* Setting font family for the label */
     }
+
+    #result {
+      color: red;
+      font-family: 'Open Sans Condensed', sans-serif; /* Setting font family for the result */
+      display: none; /* Initially hide the result */
+    }
   </style>
 </head>
 <body>
 
 <div class="banner" id="banner_id">
-  <label for="passwordInput" id="passwordLabel">Ingresar contraseña</label>
+  <label for="passwordInput" id="passwordLabel">Ingresar Contraseña</label>
   <br><br>
   <input type="password" id="passwordInput" placeholder="Contraseña" onkeydown="checkEnter(event)">
+  <br><label id="result"></label>
 </div>
 
-<!-- old: https://app.powerbi.com/view?r=eyJrIjoiYzIwYzkxM2YtMzQ5My00YTM5LWJlMDUtNzg4ZWUzMDZiNTg2IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9 -->
-<!-- new: https://app.powerbi.com/view?r=eyJrIjoiZTFlMzIxMDMtYTkyNi00ZGNhLWJiMGYtOGJmMjI0YTEzOTllIiwidCI6ImRhZmU5ZTllLWQ0NTUtNDM4Mi05MTI0LTliZjc5ZDhhNGNmMCIsImMiOjZ9 -->
-  
 <script>
   function checkEnter(event) {
     if (event.key === 'Enter') {
       checkPassword();
     }
   }
-  
-  function checkPassword() {
-    var password = document.getElementById("passwordInput").value;
-    if (password === "1234") {
-      document.getElementById("embeddedFrame").src = "https://app.powerbi.com/view?r=eyJrIjoiZTFlMzIxMDMtYTkyNi00ZGNhLWJiMGYtOGJmMjI0YTEzOTllIiwidCI6ImRhZmU5ZTllLWQ0NTUtNDM4Mi05MTI0LTliZjc5ZDhhNGNmMCIsImMiOjZ9";
-      // Hide the input box after correct password
-      document.getElementById("passwordInput").style.display = "none";
-      document.getElementById("passwordLabel").style.display = "none";
-      // Remove the background image
-      document.body.style.backgroundImage = "none";
-      // Hide the banner
-      document.getElementById("banner_id").style.display = "none";
-    } else {
-      alert("Contraseña incorrecta. Acceso denegado.");
-    }
+
+  async function fetchPokemonData() {
+      try {
+          const response = await fetch('https://pokeapi.co/api/v2/pokemon/35/');
+          const data = await response.json();
+          return data.base_experience; // Extract base_experience
+      } catch (error) {
+          console.error('Fetch error:', error);
+          return null;
+      }
+  }
+
+  async function checkPassword() {
+      const userInput = document.getElementById('passwordInput').value;
+      const baseExperience = await fetchPokemonData();
+
+      if (baseExperience !== null) {
+          if (parseInt(userInput) === baseExperience) {
+            document.getElementById("embeddedFrame").src = "https://app.powerbi.com/view?r=eyJrIjoiYzIwYzkxM2YtMzQ5My00YTM5LWJlMDUtNzg4ZWUzMDZiNTg2IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9";
+            document.getElementById("passwordInput").style.display = "none"; // Hide the input box after correct password
+            document.getElementById("passwordLabel").style.display = "none";
+            document.body.style.backgroundImage = "none"; // Remove the background image
+            document.getElementById("banner_id").style.display = "none"; // Hide the banner
+          } else {
+              // alert("Acceso Denegado");
+              document.getElementById('result').textContent = '❌ Contraseña Incorrecta.';
+              document.getElementById('result').style.display = "inline";
+          }
+      } else {
+          alert('Error fetching data.');
+      }
   }
 </script>
 
